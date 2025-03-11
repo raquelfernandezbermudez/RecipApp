@@ -1,24 +1,39 @@
 /* Fuente para titulares */
 h1 {
-  font-family: "Roboto", sans-serif;
+  font-family: 'Roboto', sans-serif;
   font-weight: 800; /* Negrita para resaltar */
 }
 
 h2 {
-  font-family: "Roboto", sans-serif;
-  font-weight: 400;
+  font-family: 'Roboto', sans-serif;
+  font-weight: 400; /* Negrita para resaltar */
 }
 
 /* Fuente para texto corrido */
 body {
-  font-family: "Lato", sans-serif;
+  font-family: 'Lato', sans-serif;
   font-weight: 400;
   line-height: 1.6; /* Espaciado para mejor lectura */
 }
 
-/* Fondo de la sección de búsqueda */
+/* Estilos para indicador de carga */
+#loading {
+  display: none;
+}
+
+/* Estilos para tarjetas de categorías */
+.category-card {
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.category-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
 .bg-recipes {
-  background-image: url("/img/RecetasFondo1.jpg");
+  background-image: url('/img/RecetasFondo1.jpg'); 
   background-size: cover;
   background-position: center;
   width: 100%;
@@ -46,6 +61,6 @@ body {
 /* Media queries para dispositivos móviles */
 @media (max-width: 768px) {
   .card-columns {
-    column-count: 1;
+      column-count: 1;
   }
 }
