@@ -113,65 +113,100 @@ async function loadHomePage() {
 
 // Función para buscar recetas
 async function searchRecipes(searchTerm) {
-    showLoading();
-    
-    try {
-        const data = await fetchFromAPI(`/search.php?s=${encodeURIComponent(searchTerm)}`);
-        
-        if (data.meals) {
-            // Mostrar un mensaje temporal de búsqueda (se implementará en commits posteriores)
-            recipesContainer.innerHTML = `
-                <div class="col-12 text-center my-5">
-                    <h2>Searching for: "${searchTerm}"</h2>
-                    <p class="mt-3">Recipe search results will be implemented in future updates.</p>
-                    <div class="mt-4">
-                        <i class="fas fa-search fa-3x text-primary"></i>
-                    </div>
-                </div>
-            `;
-        } else {
-            recipesContainer.innerHTML = `
-                <div class="col-12 text-center">
-                    <h2 class="col-12 mb-4">No results found for: "${searchTerm}"</h2>
-                    <p>Try using a different search term.</p>
-                </div>
-            `;
-        }
-    } catch (error) {
-        console.error('Error searching recipes:', error);
-    } finally {
-        hideLoading();
-    }
+  showLoading();
+  
+  try {
+      const data = await fetchFromAPI(`/search.php?s=${encodeURIComponent(searchTerm)}`);
+      
+      if (data.meals) {
+          recipesContainer.innerHTML = `
+              <h2>Results for: "${searchTerm}"</h2>
+              <div class="row g-4">
+                  ${data.meals.map(meal => createRecipeCard(meal)).join('')}
+              </div>
+          `;
+          
+          addRecipeCardListeners();
+      } else {
+          recipesContainer.innerHTML = `
+              <div class="col-12 text-center">
+                  <h2 class="col-12 mb-4">No results found for: "${searchTerm}"</h2>
+                  <p>Try using a different search term.</p>
+              </div>
+          `;
+      }
+  } catch (error) {
+      console.error('Error searching recipes:', error);
+  } finally {
+      hideLoading();
+  }
 }
 
-// Función para buscar recetas por categoría (básica)
+// Función para buscar recetas por categoría
 async function searchRecipesByCategory(category) {
-    showLoading();
-    
-    try {
-        const data = await fetchFromAPI(`/filter.php?c=${encodeURIComponent(category)}`);
-        
-        if (data.meals) {
-            // Mostrar un mensaje temporal (se implementará en commits posteriores)
-            recipesContainer.innerHTML = `
-                <div class="col-12 text-center my-5">
-                    <h2>Recipes from category: "${category}"</h2>
-                    <p class="mt-3">Category results will be implemented in future updates.</p>
-                    <div class="mt-4">
-                        <i class="fas fa-list fa-3x text-primary"></i>
-                    </div>
-                </div>
-            `;
-        } else {
-            recipesContainer.innerHTML = `
-                <div class="text-center">
-                    <h2>No se encontraron recetas en la categoría: ${category}</h2>
-                </div>
-            `;
-        }
-    } catch (error) {
-        console.error('Error fetching recipes by category:', error);
-    } finally {
-        hideLoading();
-    }
+  showLoading();
+  
+  try {
+      const data = await fetchFromAPI(`/filter.php?c=${encodeURIComponent(category)}`);
+      
+      if (data.meals) {
+          recipesContainer.innerHTML = `
+          <br>
+              <h2 class="text-center">Recipes from the category: ${category}</h2>
+              <div class="row g-4">
+                  ${data.meals.map(meal => createRecipeCard(meal)).join('')}
+              </div>
+          `;
+          
+          addRecipeCardListeners();
+      } else {
+          recipesContainer.innerHTML = `
+              <div class="text-center">
+                  <h2>No se encontraron recetas en la categoría: ${category}</h2>
+              </div>
+          `;
+      }
+  } catch (error) {
+      console.error('Error fetching recipes by category:', error);
+  } finally {
+      hideLoading();
+  }
+}
+
+// Función para crear una tarjeta de receta
+function createRecipeCard(meal) {
+  return `
+      <div class="col-12 col-md-6 col-lg-3 mb-4">
+          <div class="card recipe-card h-100 position-relative overflow-hidden" 
+              data-id="${meal.idMeal}" 
+              style="cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;"
+              onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)';" 
+              onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='';">
+              <div class="position-relative h-100">
+                  <img src="${meal.strMealThumb}" class="card-img-top h-100 object-fit-cover" alt="${meal.strMeal}">
+                  <div class="position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+                      <h5 class="card-title text-center text-white m-0 p-2 px-3" style="background-color: rgba(0, 0, 0, 0.6); border-radius: 5px;">${meal.strMeal}</h5>
+                  </div>
+              </div>
+              <div class="position-absolute bottom-0 start-0 w-100 p-2 d-flex justify-content-center">
+                  ${meal.strCategory ? `
+                      <span class="badge bg-primary">${meal.strCategory}</span>
+                  ` : ''}
+                  ${meal.strArea ? `
+                      <span class="badge bg-secondary ms-1">${meal.strArea}</span>
+                  ` : ''}
+              </div>
+          </div>
+      </div>
+  `;
+}
+
+// Función para añadir event listeners a las tarjetas de recetas
+function addRecipeCardListeners() {
+  document.querySelectorAll('.recipe-card').forEach(card => {
+      card.addEventListener('click', () => {
+          const recipeId = card.getAttribute('data-id');
+          alert(`Mostrando receta ${recipeId}. El modal de detalles se implementará en la próxima actualización.`);
+      });
+  });
 }
