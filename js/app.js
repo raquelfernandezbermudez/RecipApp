@@ -16,10 +16,10 @@ const modalTitle = document.getElementById('modalTitle');
 let recipeModal;
 
 // Definir la función en el ámbito global
+// Función global para mostrar los detalles de una receta.
 function viewRecipe(recipeId) {
   showRecipeDetails(recipeId);
 }
-
 
 // Inicialización
 document.addEventListener('DOMContentLoaded', () => {
@@ -28,14 +28,14 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Cargar página de inicio
     loadHomePage();
-    
-    // Event listeners para la navegación
+
+    // Evento para cargar la página de inicio al hacer clic en el enlace de inicio.
     homeLink.addEventListener('click', (e) => {
         e.preventDefault();
         loadHomePage();
     });
     
-    // Event listener para el formulario de búsqueda
+    // Evento para buscar recetas cuando se envía el formulario de búsqueda.
     searchForm.addEventListener('submit', (e) => {
         e.preventDefault();
         const searchTerm = searchInput.value.trim();
@@ -46,27 +46,32 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 // Funciones de utilidad
+// Función para mostrar el indicador de carga y ocultar cualquier mensaje de error.
 function showLoading() {
     loadingIndicator.style.display = 'block';
     recipesContainer.innerHTML = '';
     errorMessage.classList.add('d-none');
 }
 
+// Función para mostrar el indicador de carga para los detalles de la receta.
 function showDetailsLoading() {
   loadingIndicator.style.display = 'block';
   errorMessage.classList.add('d-none');
 }
 
+// Función para ocultar el indicador de carga.
 function hideLoading() {
     loadingIndicator.style.display = 'none';
 }
 
+// Función para mostrar un mensaje de error.
 function showError(message) {
     errorMessage.textContent = message || 'An error occurred. Please try again.';
     errorMessage.classList.remove('d-none');
 }
+// Mostrar un mensaje de error.
 
-// Función para hacer peticiones a la API
+// Función para realizar solicitudes a la API y manejar errores.
 async function fetchFromAPI(endpoint) {
     try {
         url = `${API_BASE_URL}${endpoint}`
@@ -83,7 +88,7 @@ async function fetchFromAPI(endpoint) {
     }
 }
 
-// Función para cargar la página de inicio
+// Cargar y mostrar las categorías de recetas en la página de inicio.
 async function loadHomePage() {
     showLoading();
     
@@ -131,7 +136,7 @@ async function loadHomePage() {
     }
 }
 
-// Función para buscar recetas
+// Función para buscar recetas según el término de búsqueda
 async function searchRecipes(searchTerm) {
   showLoading();
   
@@ -162,7 +167,7 @@ async function searchRecipes(searchTerm) {
   }
 }
 
-// Función para buscar recetas por categoría
+// Buscar recetas según la categoría seleccionada.
 async function searchRecipesByCategory(category) {
   showLoading();
   
@@ -193,6 +198,7 @@ async function searchRecipesByCategory(category) {
   }
 }
 
+// Función para mostrar los detalles de una receta en un modal.
 async function showRecipeDetails(recipeId) {
   // showLoading();
   showDetailsLoading();
