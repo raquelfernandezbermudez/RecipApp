@@ -74,8 +74,8 @@ function showError(message) {
 // Función para realizar solicitudes a la API y manejar errores.
 async function fetchFromAPI(endpoint) {
     try {
-        url = `${API_BASE_URL}${endpoint}`
-        const response = await fetch(url);
+        const apiUrl = `${API_BASE_URL}${endpoint}`
+        const response = await fetch(apiUrl);
         if (!response.ok) {
             throw new Error(`Error HTTP: ${response.status}`);
         }
