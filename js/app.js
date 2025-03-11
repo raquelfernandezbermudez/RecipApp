@@ -62,7 +62,7 @@ function hideLoading() {
 }
 
 function showError(message) {
-    errorMessage.textContent = message || 'Ha ocurrido un error. Por favor, inténtalo de nuevo.';
+    errorMessage.textContent = message || 'An error occurred. Please try again.';
     errorMessage.classList.remove('d-none');
 }
 
@@ -182,7 +182,7 @@ async function searchRecipesByCategory(category) {
       } else {
           recipesContainer.innerHTML = `
               <div class="text-center">
-                  <h2>No se encontraron recetas en la categoría: ${category}</h2>
+                  <h2>No recipes found in the category: ${category}</h2>
               </div>
           `;
       }
@@ -261,7 +261,7 @@ async function showRecipeDetails(recipeId) {
           // Mostrar el modal
           recipeModal.show();
       } else {
-          showError('No se encontró la receta');
+          showError('Recipe not found');
       }
   } catch (error) {
       console.error('Error showing recipe details:', error);
