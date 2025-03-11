@@ -43,6 +43,12 @@ body {
   cursor: pointer;
 }
 
+/* Imagen de detalle de receta */
+.recipe-detail-img {
+  max-height: 400px;
+  object-fit: cover;
+}
+
 /* Estilos para tarjetas de categorías */
 .category-card {
   cursor: pointer;
@@ -84,5 +90,9 @@ body {
 @media (max-width: 768px) {
   .card-columns {
       column-count: 1;
+  }
+  
+  .recipe-detail-img {
+      max-height: 300px;
   }
 }
