@@ -15,12 +15,6 @@ const modalTitle = document.getElementById('modalTitle');
 // Instancia del modal de Bootstrap
 let recipeModal;
 
-// Definir la función en el ámbito global
-// Función global para mostrar los detalles de una receta.
-function viewRecipe(recipeId) {
-  showRecipeDetails(recipeId);
-}
-
 // Inicialización
 document.addEventListener('DOMContentLoaded', () => {
     // Inicializar el modal
@@ -282,7 +276,6 @@ function createRecipeCard(meal) {
       <div class="col-12 col-md-6 col-lg-3 mb-4">
           <div class="card recipe-card h-100 position-relative overflow-hidden" 
               data-id="${meal.idMeal}" 
-              onclick="viewRecipe('${meal.idMeal}')"
               style="cursor: pointer; transition: transform 0.3s, box-shadow 0.3s;"
               onmouseover="this.style.transform='scale(1.03)'; this.style.boxShadow='0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23)';" 
               onmouseout="this.style.transform='scale(1)'; this.style.boxShadow='';">

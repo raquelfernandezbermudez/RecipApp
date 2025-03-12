@@ -37,5 +37,18 @@ RecipApp es una aplicación web que permite a los usuarios buscar recetas de dif
 - Usa el buscador en la parte superior para encontrar recetas por nombre
 - Haz clic en cualquier receta para ver los detalles, ingredientes e instrucciones
 
+## Desarrollo Colaborativo
+Este proyecto fue desarrollado en colaboración con una inteligencia artificial. La IA proporcionó asistencia en la generación de código, la depuración de errores y la optimización de funcionalidades. La colaboración con la IA permitió acelerar el proceso de desarrollo y mejorar la calidad del código.
+
+### Contribuciones de la IA
+- Generación de código base para funcionalidades específicas.
+- Asistencia en la depuración de errores y optimización de rendimiento.
+- Sugerencias para mejorar la estructura y la legibilidad del código.
+
+### Contribuciones Humanas
+- Diseño de la estructura de la aplicación.
+- Implementación de lógica y personalización de la interfaz de usuario.
+- Pruebas y validación de la funcionalidad de la aplicación.
+
 ## Autora
 Raquel Fernández
